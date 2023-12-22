@@ -15,8 +15,15 @@
     let fullscreenStream = null;
 
     document.addEventListener('keydown', function(event) {
-      const key = event.key; // "1", "2", "3", "4", etc.
-      if (key >= "1" && key <= "4") {
+      const key = event.key; // "0", "1", "2", "3", "4", etc.
+      if (key === "0") {
+        // If "0" is pressed, exit fullscreen
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+        fullscreen = false;
+        fullscreenStream = null;
+      } else if (key >= "1" && key <= "4") {
         const streamIndex = parseInt(key) - 1;
         const streamElement = document.getElementsByClassName('video')[streamIndex];
         if (streamElement) {
@@ -39,7 +46,7 @@
       }
     });
   </script>
-  <title>PiO Noticieros Argentina</title>
+  <title>PiO News</title>
   <style>
     .container {
       display: grid;
