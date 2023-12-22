@@ -1,1 +1,3 @@
 # TV News Channels from Argentina
+
+Solo quería ver como los diferentes canales de TV de noticias de mi país pintan la realidad de acuerdo a quien los patrocina...
