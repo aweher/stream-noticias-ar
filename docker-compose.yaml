@@ -1,0 +1,25 @@
+name: caosvision
+version: "3.8"
+#
+x-logging:
+  &default-logging
+  driver: local
+  options:
+    max-size: "10m"
+    max-file: "3"
+    compress: "true"
+#
+services:
+  webapp:
+    build: .
+    logging: *default-logging
+    healthcheck:
+      start_period: 30s
+      timeout: 3s
+      interval: 15s
+      test: "curl -f http://localhost:5000/api/v1/ping || exit 1"
+    environment:
+      - TZ=America/Argentina/Buenos_Aires
+    ports:
+      - 15500:5000
+    restart: unless-stopped

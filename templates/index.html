@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SG15924E5W"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-SG15924E5W');
+  </script>
+  <script>
+    let fullscreen = false;
+    let fullscreenStream = null;
+
+    document.addEventListener('keydown', function(event) {
+      const key = event.key; // "0", "1", "2", "3", "4", etc.
+      if (key === "0") {
+        // If "0" is pressed, exit fullscreen
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+        fullscreen = false;
+        fullscreenStream = null;
+      } else if (key >= "1" && key <= "4") {
+        const streamIndex = parseInt(key) - 1;
+        const streamElement = document.getElementsByClassName('video')[streamIndex];
+        if (streamElement) {
+          if (fullscreen && fullscreenStream === streamElement) {
+            // If the stream is already in fullscreen, exit fullscreen
+            if (document.exitFullscreen) {
+              document.exitFullscreen();
+            }
+            fullscreen = false;
+            fullscreenStream = null;
+          } else {
+            // Make the stream go fullscreen
+            if (streamElement.requestFullscreen) {
+              streamElement.requestFullscreen();
+            }
+            fullscreen = true;
+            fullscreenStream = streamElement;
+          }
+        }
+      }
+    });
+  </script>
+  <title>C@0$ VISION</title>
+  <style>
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      height: 100vh;
+      width: 100%;
+    }
+    .video {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="container">
+    <script>
+      fetch('/api/v1/tv/grid/caosvision')
+        .then(response => response.json())
+        .then(data => {
+          data.streams.forEach(stream => {
+            var iframe = document.createElement('iframe');
+            iframe.src = stream + "?autoplay=1&mute=1";
+            iframe.className = 'video';
+            document.getElementById('container').appendChild(iframe);
+          });
+        });
+    </script>
+  </div>
+</body>
+</html>
