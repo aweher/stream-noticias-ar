@@ -11,7 +11,7 @@ x-logging:
 #
 services:
   webapp:
-    build: .
+    image: ghcr.io/aweher/stream-noticias-ar
     logging: *default-logging
     healthcheck:
       start_period: 30s
