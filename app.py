@@ -20,7 +20,7 @@ def serve_json(channel):  # Add the missing parameter "channel"
         data = {
             'streams': [
                 "https://www.youtube.com/embed/Hy4UCfsE6Yk",
-                "https://www.youtube.com/embed/LY2XEQ_SSXA",
+                "https://www.youtube.com/embed/ocFG3yor--M",
                 "https://www.youtube.com/embed/avly0uwZzOE",
                 "https://www.youtube.com/embed/cb12KmMMDJA"
             ]
